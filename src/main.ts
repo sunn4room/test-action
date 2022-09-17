@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import * as http from '@actions/http-client'
 import {wait} from './wait'
 
 async function run(): Promise<void> {
@@ -9,6 +10,10 @@ async function run(): Promise<void> {
     core.debug(new Date().toTimeString())
     await wait(parseInt(ms, 10))
     core.debug(new Date().toTimeString())
+
+    const client = new http.HttpClient('client')
+    const res = await client.get('https://www.baidu.com')
+    if (res.message.statusCode) core.info(res.message.statusCode.toString())
 
     core.setOutput('time', new Date().toTimeString())
   } catch (error) {
