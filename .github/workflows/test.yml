@@ -19,6 +19,8 @@ jobs:
       - name: run action.yml
         uses: ./
         with:
-          dict:
-            name: 'sunn4room'
-            age: 100
+          dict: |
+            {
+              "name": "sunn4room",
+              "age": 100
+            }
