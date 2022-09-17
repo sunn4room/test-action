@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: npm run all
+      - name: build
         run: |
           npm install
-          npm run all
-      - name: run action.yml
+          npm run build
+      - name: run action
         uses: ./
         with:
           dict: |
