@@ -1,22 +1,22 @@
-import core from '@actions/core'
-// import exec from '@actions/exec'
+import { getInput, info, setFailed } from '@actions/core'
+import { getExecOutput } from '@actions/exec'
 
 async function run(): Promise<void> {
   try {
-    const d = core.getInput('dict')
-    core.info('---')
-    core.info(d)
-    core.info('---')
+    const d = getInput('dict')
+    info('---')
+    info(d)
+    info('---')
     const dd = JSON.parse(d)
-    core.info(dd.name)
-    core.info(dd.age.toString())
-    core.info('---')
-    // const out = await exec.getExecOutput('ls')
-    // core.info(out.stdout)
-    // core.info('---')
+    info(dd.name)
+    info(dd.age.toString())
+    info('---')
+    const out = await getExecOutput('ls')
+    info(out.stdout)
+    info('---')
   } catch (error) {
     if (error instanceof Error) {
-      core.setFailed(error.message)
+      setFailed(error.message)
     }
   }
 }
